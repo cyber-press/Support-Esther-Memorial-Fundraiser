@@ -403,9 +403,9 @@
               <a class="cta" href="#costs"><span>View Cost Breakdown</span></a>
             </div>
             <div class="qr">
-              <img src="https://placehold.co/200x200/ffffff/000000?text=QR+Code" alt="QR code placeholder" onerror="this.style.display='none'"/>
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F%3Ftext%3DHi!%2520I'm%2520supporting%2520Esther.%2520Here%2520are%2520the%2520donation%2520details%253A%250A%250AOpay%2520Account%253A%25208163818650%250AAccount%2520Name%253A%2520Esther%2520Adediran%250AReference%253A%2520Bukky%2520Support" alt="QR code to share donation details on WhatsApp" />
               <div class="qr-text">
-                Scan for details.
+                Scan to share details on WhatsApp.
                 <small>Opay 8163818650</small>
               </div>
             </div>
@@ -458,9 +458,10 @@
               <div class="guestbook-messages" id="guestbook-messages-container">
                 <!-- Messages will be dynamically inserted here -->
               </div>
-              <form id="guestbook-form">
-                <input type="text" id="guestbook-name" placeholder="Your Name (Optional)" maxlength="50">
-                <textarea id="guestbook-message" placeholder="Leave a message of support..." required maxlength="280" rows="3"></textarea>
+              <form id="guestbook-form" name="guestbook" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="guestbook">
+                <input type="text" id="guestbook-name" name="guestbook-name" placeholder="Your Name (Optional)" maxlength="50">
+                <textarea id="guestbook-message" name="guestbook-message" placeholder="Leave a message of support..." required maxlength="280" rows="3"></textarea>
                 <button type="submit" class="btn primary" style="width:100%;">Post Message</button>
               </form>
             </section>
@@ -575,6 +576,8 @@
 
       guestbookForm.addEventListener('submit', (e) => {
           e.preventDefault();
+          
+          const formData = new FormData(guestbookForm);
           const nameInput = document.getElementById('guestbook-name');
           const messageInput = document.getElementById('guestbook-message');
           
@@ -582,11 +585,25 @@
           const newMessage = messageInput.value.trim();
 
           if (newMessage) {
+              // Optimistically update UI
               messages.unshift({ name: newName, text: newMessage });
               renderMessages();
               nameInput.value = '';
               messageInput.value = '';
-              showToast('Your message has been posted!');
+              
+              // Submit to Netlify in the background
+              fetch("/", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                  body: new URLSearchParams(formData).toString()
+              }).then(() => {
+                  showToast('Your message has been posted!');
+              }).catch((error) => {
+                  console.error('Error submitting form to Netlify:', error);
+                  showToast('Message could not be sent.', true);
+                  // Note: In case of error, the message is still visible locally.
+                  // You might want to add logic here to remove it if the submission fails.
+              });
           }
       });
       

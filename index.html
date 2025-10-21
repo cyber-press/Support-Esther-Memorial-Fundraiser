@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support Esther — Memorial & Fundraiser</title>
+  <meta name="description" content="Join us in supporting Ms. Esther Adediran during this difficult time. Burial: Nov 28–29, Abuja. Donate, share, and stay updated." />
+  <meta property="og:image" content="Mr. Adediran.jpeg" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💙</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #0b1020;
+      --bg-2: #0a1836;
+      --card-bg: linear-gradient(180deg, rgba(14, 26, 64, 0.85), rgba(16, 28, 72, 0.8));
+      --card-border: rgba(129, 170, 255, 0.18);
+      --text: #dfe8ff;
+      --muted: #99a7c7;
+      --accent: #ff3b7a;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      --gradient-ring: conic-gradient(from 0deg, #5bd7ff, #b57aff, #ff3b7a, #ffd166, #5bd7ff);
+      --gradient-button: linear-gradient(135deg, #ff3b7a, #ffd166);
+      --gradient-progress: linear-gradient(90deg, #5bd7ff, #b57aff, #ff3b7a);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background:
+        radial-gradient(1200px 800px at 10% -10%, #1b3570 0%, transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, #0c3c73 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(2px 2px at 20% 30%, #ffffff55 30%, transparent 40%),
+        radial-gradient(1.5px 1.5px at 70% 10%, #c3e7ff55 30%, transparent 40%),
+        radial-gradient(1.5px 1.5px at 40% 80%, #ffffff44 30%, transparent 40%),
+        radial-gradient(2px 2px at 85% 65%, #c3e7ff55 30%, transparent 40%);
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    /* --- Layout & Structure --- */
+    .container { max-width: 1024px; margin: auto; padding: 20px; }
+    .shell {
+      position: relative;
+      border-radius: 28px;
+      padding: 1.2px;
+      background: linear-gradient(135deg, #5bd7ff 0%, #b57aff 35%, #ff3b7a 70%, #ffd166 100%);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+    .frame {
+      background: linear-gradient(180deg, rgba(10, 18, 48, 0.7), rgba(12, 20, 62, 0.65));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 27px;
+      overflow: hidden;
+    }
+    .grid {
+        display: grid;
+        gap: 18px;
+        padding: 0 18px 18px;
+    }
+    @media (min-width: 900px) {
+        .grid { grid-template-columns: 1.05fr .95fr; }
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUpFadeIn 0.8s ease-out forwards;
+    }
+    .card-full-width { margin: 0 18px 18px; }
+    /* Animation Delays */
+    .profile { animation-delay: 0.2s; }
+    #countdown { animation-delay: 0.3s; }
+    .grid section:nth-child(1) { animation-delay: 0.4s; }
+    .grid section:nth-child(2) { animation-delay: 0.5s; }
+    .card-group .card:nth-child(1) { animation-delay: 0.6s; }
+    .card-group .card:nth-child(2) { animation-delay: 0.7s; }
+    .card-group .card:nth-child(3) { animation-delay: 0.8s; }
+    .card-group .card:nth-child(4) { animation-delay: 0.9s; }
+    .card-group .card:nth-child(5) { animation-delay: 1.0s; }
+
+
+    /* --- Header & Profile --- */
+    .hero { padding: 28px 22px 12px; text-align: center; }
+    .brand { display: flex; gap: 12px; align-items: center; justify-content: center; }
+    .brand .logo {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: linear-gradient(135deg, #4dd0ff, #a18cff);
+      box-shadow: 0 10px 30px rgba(91, 215, 255, 0.35);
+    }
+    .brand h1 { margin: 0; font-weight: 800; letter-spacing: -0.5px; font-size: clamp(26px, 4vw, 38px); }
+    .subtitle { margin: 0.5rem 0 0; color: var(--muted); }
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 24px 12px 12px;
+    }
+    @media (min-width: 600px) {
+      .profile { flex-direction: row; justify-content: center; }
+    }
+    .avatar-wrap { position: relative; flex-shrink: 0; }
+    .ring {
+      position: absolute; inset: -6px; border-radius: 50%;
+      background: var(--gradient-ring);
+      filter: blur(1px);
+      animation: spin 4s linear infinite;
+    }
+    .avatar {
+      position: relative; width: 140px; height: 140px;
+      border-radius: 50%; object-fit: cover;
+      border: 4px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+    .badges { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+    .badge {
+      border: 1px solid #2a3f7a;
+      background: linear-gradient(180deg, #0f1f4f, #0f224f);
+      color: #cfe6ff; padding: 8px 14px; border-radius: 999px;
+      font-size: 14px;
+    }
+    .date-of-passing {
+        color: var(--muted);
+        margin-top: -8px;
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    /* --- Countdown Timer --- */
+    #countdown {
+        text-align: center;
+        padding: 10px 20px 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUpFadeIn 0.8s ease-out forwards;
+    }
+    .countdown-title {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .countdown-timer {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    .timer-unit {
+        background: rgba(0,0,0,0.2);
+        padding: 10px;
+        border-radius: 8px;
+        width: 70px;
+    }
+    .timer-unit span {
+        display: block;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    .timer-unit small {
+        font-size: 12px;
+        color: var(--muted);
+    }
+
+    /* --- Components --- */
+    h2 { margin: 0 0 14px; font-size: 22px; }
+    .btn {
+      appearance: none; border: none; border-radius: 12px;
+      padding: 12px 18px; font-weight: 700; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn svg {
+        width: 18px; height: 18px;
+    }
+    .btn.ghost {
+      background: transparent; border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #e8f2ff;
+    }
+    .btn.ghost:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.5); }
+    .btn.primary { background: var(--gradient-button); color: #1b123a; }
+    .btn.primary:hover { filter: brightness(1.15); transform: translateY(-2px); }
+    .cta {
+      display: inline-block; margin: 0; text-decoration: none;
+      font-weight: 800; color: #0a0a0a; background: var(--gradient-ring);
+      padding: 2px; border-radius: 999px; transition: all 0.2s ease;
+    }
+    .cta span {
+      display: block; background: #0e1636; color: #e8f2ff;
+      padding: 10px 20px; border-radius: 999px; transition: background 0.2s ease;
+    }
+    .cta:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+    /* --- Donation Section --- */
+    .copy-row { display: flex; gap: 10px; align-items: stretch; margin-bottom: 10px; }
+    .copy-field {
+      flex: 1; background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px; padding: 12px 14px; color: var(--text);
+      font-size: 15px;
+    }
+    .copy-field strong { font-weight: 700; }
+    .qr { display: flex; gap: 14px; align-items: center; margin-top: 20px; }
+    .qr img { width: 100px; height: 100px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.22); }
+    .qr-text { font-size: 14px; color: var(--muted); }
+    .qr-text small { color: #a9c7ff; display: block; margin-top: 4px; }
+    .button-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    
+    /* --- Costs & Progress Section --- */
+    .table { width: 100%; border-collapse: collapse; color: var(--text); }
+    .table th, .table td { padding: 12px 8px; border-bottom: 1px dashed rgba(176, 197, 255, 0.28); text-align: left; }
+    .table th { color: #a9c7ff; font-weight: 400; }
+    .table tr:last-child td { border-bottom: none; }
+    .notice {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      color: var(--text); border-radius: 12px; padding: 12px;
+      margin-top: 16px; font-size: 14px;
+    }
+    .progress-bar-container { margin-top: 16px; }
+    .progress-bar-labels { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--gradient-progress);
+      border-radius: 999px;
+      width: 0; /* Set by JS */
+      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .progress-summary { text-align: center; margin-top: 8px; font-size: 14px; }
+
+    /* --- Guestbook / Messages of Support --- */
+    .guestbook-messages {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 10px; /* for scrollbar */
+        margin-bottom: 20px;
+    }
+    .guestbook-message {
+        background: rgba(0,0,0,0.2);
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border-left: 3px solid var(--gradient-ring);
+    }
+    .guestbook-message p {
+        margin: 0 0 5px;
+    }
+    .guestbook-message small {
+        font-weight: 700;
+        color: #a9c7ff;
+    }
+    #guestbook-form textarea, #guestbook-form input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        padding: 12px 14px;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    #guestbook-form textarea:focus, #guestbook-form input:focus {
+        outline: none;
+        border-color: #5bd7ff;
+    }
+    
+    /* --- Other Sections --- */
+    ul { list-style-position: inside; padding-left: 0; }
+    ul li { margin-bottom: 8px; }
+    .contact-list, .location-list { list-style-type: none; }
+    .contact-list li, .location-list li { display: flex; align-items: center; gap: 10px; }
+    .contact-list strong, .location-list strong { color: #a9c7ff; }
+    .location-details p { margin-bottom: 16px; }
+
+    /* --- Footer --- */
+    .site-footer { color: var(--muted); text-align: center; padding: 24px; font-size: 14px; }
+
+    /* --- Toast Notification --- */
+    #toast {
+      position: fixed;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #32d296;
+      color: #0b1020;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: bottom 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 1000;
+    }
+    #toast.show {
+      bottom: 30px;
+    }
+
+    /* --- Animations --- */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes slideUpFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ring, .cta, .btn, .card, .shell {
+        animation: fadeIn 0.01s forwards !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="shell">
+      <div class="frame">
+        <header class="hero">
+          <div class="brand">
+            <div class="logo" aria-hidden="true"></div>
+            <h1>Support Esther — Memorial & Fundraiser</h1>
+          </div>
+          <p class="subtitle">Let’s unite to support our dear friend during this difficult time.</p>
+
+          <div class="profile card">
+            <div class="avatar-wrap">
+              <div class="ring" aria-hidden="true"></div>
+              <img class="avatar" src="https://placehold.co/280x280/1a294d/ffffff?text=In+Loving+Memory" alt="In loving memory of Bukky’s late father" />
+            </div>
+            <div>
+              <h2>M/Snr/Ap Peter Olusola Adediran</h2>
+              <p class="date-of-passing">Slept in the Lord on October 14, 2025</p>
+              <div class="badges">
+                <span class="badge">Burial: Nov 28–29</span>
+                <span class="badge">Abuja — Service & Reception</span>
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        <div id="countdown">
+            <h3 class="countdown-title">Countdown to Memorial Service</h3>
+            <div class="countdown-timer">
+                <div class="timer-unit"><span id="days">0</span><small>Days</small></div>
+                <div class="timer-unit"><span id="hours">0</span><small>Hours</small></div>
+                <div class="timer-unit"><span id="minutes">0</span><small>Mins</small></div>
+                <div class="timer-unit"><span id="seconds">0</span><small>Secs</small></div>
+            </div>
+        </div>
+
+        <main class="grid">
+          <!-- Donation Panel -->
+          <section class="card" aria-labelledby="donate-h2">
+            <h2 id="donate-h2">Donation Details</h2>
+            <div class="copy-row" role="group" aria-label="Donation account details">
+              <div class="copy-field" id="acct">Opay Account: <strong>8163818650</strong></div>
+              <button class="btn ghost" data-copy-target="#acct">Copy</button>
+            </div>
+            <div class="copy-row">
+              <div class="copy-field" id="name">Account Name: <strong>Esther Adediran</strong></div>
+              <button class="btn ghost" data-copy-target="#name">Copy</button>
+            </div>
+            <div class="copy-row">
+              <div class="copy-field" id="ref">Reference: <strong>Bukky Support</strong></div>
+              <button class="btn ghost" data-copy-target="#ref">Copy</button>
+            </div>
+            <div class="button-group">
+              <a class="btn primary" href="https://wa.me/?text=Hi!%20I'm%20supporting%20Esther.%20Here%20are%20the%20donation%20details%3A%0A%0AOpay%20Account%3A%208163818650%0AAccount%20Name%3A%20Esther%20Adediran%0AReference%3A%20Bukky%20Support" target="_blank" rel="noopener">Share on WhatsApp</a>
+              <a class="cta" href="#costs"><span>View Cost Breakdown</span></a>
+            </div>
+            <div class="qr">
+              <img src="https://placehold.co/200x200/ffffff/000000?text=QR+Code" alt="QR code placeholder" onerror="this.style.display='none'"/>
+              <div class="qr-text">
+                Scan for details.
+                <small>Opay 8163818650</small>
+              </div>
+            </div>
+          </section>
+
+          <!-- Costs & Target -->
+          <section id="costs" class="card" aria-labelledby="costs-h2">
+            <h2 id="costs-h2">Fundraising Goal</h2>
+            <table class="table" aria-label="Cost breakdown table">
+              <thead><tr><th>Item</th><th style="text-align:right;">Cost (₦)</th></tr></thead>
+              <tbody>
+                <tr><td>Casket</td><td style="text-align:right;">200,000</td></tr>
+                <tr><td>Cemetery Service</td><td style="text-align:right;">300,000</td></tr>
+                <tr><td>Reception</td><td style="text-align:right;">300,000</td></tr>
+                <tr><td>Miscellaneous</td><td style="text-align:right;">50,000</td></tr>
+              </tbody>
+            </table>
+            <div class="progress-bar-container">
+              <div class="progress-bar-labels">
+                <span id="amount-raised-label">Raised: ₦0</span>
+                <span>Goal: ₦850,000</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+              </div>
+               <p class="progress-summary" id="progress-summary">Thank you for every contribution!</p>
+            </div>
+            <div class="notice">Suggested contributions: ₦3k, ₦5k, ₦10k, ₦15k, ₦20k+ — please give within your ability.</div>
+          </section>
+        </main>
+        
+        <div class="card-group">
+            <section class="card card-full-width" aria-labelledby="location-h2">
+              <h2 id="location-h2">Event Details & Location</h2>
+              <div class="location-details">
+                <ul class="location-list">
+                    <li><strong>Date:</strong> November 28th - 29th</li>
+                    <li><strong>Location:</strong> Gudu Cemetery, Gudu District, Abuja, Nigeria</li>
+                </ul>
+                <p style="margin-top: 10px;">Further details regarding the reception will be shared soon.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Gudu+Cemetery+Abuja" class="btn primary" target="_blank" rel="noopener">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    View on Google Maps
+                </a>
+              </div>
+            </section>
+
+            <section class="card card-full-width" aria-labelledby="guestbook-h2">
+              <h2 id="guestbook-h2">Messages of Support</h2>
+              <div class="guestbook-messages" id="guestbook-messages-container">
+                <!-- Messages will be dynamically inserted here -->
+              </div>
+              <form id="guestbook-form">
+                <input type="text" id="guestbook-name" placeholder="Your Name (Optional)" maxlength="50">
+                <textarea id="guestbook-message" placeholder="Leave a message of support..." required maxlength="280" rows="3"></textarea>
+                <button type="submit" class="btn primary" style="width:100%;">Post Message</button>
+              </form>
+            </section>
+
+            <section class="card card-full-width" aria-labelledby="updates-h2">
+              <h2 id="updates-h2">Updates</h2>
+              <ul>
+                <li>Thank you all for the incredible outpouring of support so far. Every message and contribution is deeply appreciated.</li>
+              </ul>
+            </section>
+    
+            <section class="card card-full-width" aria-labelledby="contacts-h2">
+              <h2 id="contacts-h2">Key Contacts</h2>
+              <ul class="contact-list">
+                <li><strong>Donations:</strong> Esther - 0812 345 6789</li>
+                <li><strong>Logistics:</strong> John - 0809 876 5432</li>
+              </ul>
+            </section>
+    
+            <section class="card card-full-width" aria-labelledby="help-h2">
+              <h2 id="help-h2">Other Ways to Help</h2>
+              <p>You can assist with logistics (transportation, chairs, food, printing, decorations) or help spread the word. For other support, kindly reach out directly to the contacts above or in the WhatsApp group.</p>
+            </section>
+        </div>
+
+        <footer class="site-footer">Designed with love</footer>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Fundraising Progress Bar ---
+      const totalGoal = 850000;
+      const amountRaised = 425000; 
+      
+      const progressFill = document.getElementById('progress-fill');
+      const amountRaisedLabel = document.getElementById('amount-raised-label');
+      const progressSummary = document.getElementById('progress-summary');
+
+      const percentageRaised = Math.min((amountRaised / totalGoal) * 100, 100);
+      
+      setTimeout(() => {
+        if(progressFill) progressFill.style.width = `${percentageRaised}%`;
+      }, 500);
+
+      if (amountRaisedLabel) amountRaisedLabel.textContent = `Raised: ₦${amountRaised.toLocaleString()}`;
+      if (progressSummary) {
+        const remaining = totalGoal - amountRaised;
+        if (remaining > 0) {
+            progressSummary.textContent = `Just ₦${remaining.toLocaleString()} more to reach our goal!`;
+        } else {
+            progressSummary.textContent = `Goal reached! Thank you for your amazing support!`;
+        }
+      }
+
+      // --- Countdown Timer ---
+      const countdownDate = new Date("November 28, 2025 09:00:00").getTime();
+      const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+        document.getElementById('seconds').innerText = seconds;
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('countdown').innerHTML = `<h3 class="countdown-title">The memorial service has begun.</h3>`;
+        }
+      }, 1000);
+
+      // --- Guestbook Messages of Support ---
+      const guestbookForm = document.getElementById('guestbook-form');
+      const messagesContainer = document.getElementById('guestbook-messages-container');
+      
+      // Starting messages array
+      let messages = [
+          { name: 'A caring friend', text: 'Sending all my love and support during this difficult time. We are here for you.'},
+          { name: 'John D.', text: 'My deepest condolences. Mr. Adediran was a wonderful person.'}
+      ];
+
+      function renderMessages() {
+          messagesContainer.innerHTML = '';
+          if (messages.length === 0) {
+              messagesContainer.innerHTML = '<p>Be the first to leave a message of support.</p>';
+          } else {
+              messages.forEach(msg => {
+                  const messageEl = document.createElement('div');
+                  messageEl.classList.add('guestbook-message');
+                  
+                  const textEl = document.createElement('p');
+                  textEl.textContent = msg.text;
+                  
+                  const nameEl = document.createElement('small');
+                  nameEl.textContent = `— ${msg.name}`;
+
+                  messageEl.appendChild(textEl);
+                  messageEl.appendChild(nameEl);
+                  messagesContainer.appendChild(messageEl);
+              });
+          }
+      }
+
+      guestbookForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nameInput = document.getElementById('guestbook-name');
+          const messageInput = document.getElementById('guestbook-message');
+          
+          const newName = nameInput.value.trim() || 'Anonymous';
+          const newMessage = messageInput.value.trim();
+
+          if (newMessage) {
+              messages.unshift({ name: newName, text: newMessage });
+              renderMessages();
+              nameInput.value = '';
+              messageInput.value = '';
+              showToast('Your message has been posted!');
+          }
+      });
+      
+      // Initial render
+      renderMessages();
+
+      // --- Copy to Clipboard with Toast Notification ---
+      const toast = document.getElementById('toast');
+      const copyButtons = document.querySelectorAll('[data-copy-target]');
+
+      copyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetSelector = button.getAttribute('data-copy-target');
+          const elementToCopy = document.querySelector(targetSelector);
+          if (!elementToCopy) return;
+          
+          const textToCopy = elementToCopy.textContent.trim().replace(/\s+/g, ' ');
+          navigator.clipboard.writeText(textToCopy).then(() => {
+             showToast('Copied to clipboard!');
+          }).catch(err => {
+            console.error('Fallback copy method triggered');
+            // Fallback for older browsers or if navigator.clipboard is not available
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = textToCopy;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            try {
+               document.execCommand('copy');
+               showToast('Copied to clipboard!');
+            } catch (err) {
+              console.error('Failed to copy text: ', err);
+              showToast('Copy failed!', true);
+            }
+            document.body.removeChild(tempTextarea);
+          });
+        });
+      });
+
+      let toastTimeout;
+      function showToast(message, isError = false) {
+        if (!toast) return;
+        
+        clearTimeout(toastTimeout);
+        toast.textContent = message;
+        toast.style.backgroundColor = isError ? '#ff3b7a' : '#32d296';
+        toast.classList.add('show');
+        
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>
+
